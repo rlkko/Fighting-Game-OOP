@@ -17,11 +17,11 @@ void CombatSystem::AddDefaultPlayer() {
 
 //All the logs to be displayed to the user
 void CombatSystem::HitLog(Player& fighter, Player& victim, int rand_attack) {
-	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << rand_attack << " - HP: " << (victim.getHp() - rand_attack) << std::endl;
+	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << rand_attack << " - HP: " << (victim.getHp() - rand_attack) << "\n";
 }
 
 void CombatSystem::DefendLog(Player& fighter, Player& victim, int rand_attack) {
-	std::cout << victim.getName() << " Defended " << fighter.getName() << "'s attack for " << rand_attack << " - HP: " << victim.getHp() << std::endl;
+	std::cout << victim.getName() << " Defended " << fighter.getName() << "'s attack for " << rand_attack << " - HP: " << victim.getHp() << "\n";
 }
 
 void CombatSystem::InitLog() {
@@ -37,7 +37,7 @@ void CombatSystem::InitLog() {
 bool CombatSystem::CheckWinner() {
 	//check each player by reference
 	for (Player& player : players) {
-		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.is_dead() << std::endl;
+		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.is_dead() << "\n";
 		//check if the player is dead with the "is_dead()" function in the Player Class
 		if (player.is_dead()) {
 			std::cout << player.getName() << " is dead! " << std::endl;
@@ -54,7 +54,7 @@ void CombatSystem::Fight(int attack_value, int defense_value, Player& fighter, P
 		CombatSystem::DefendLog(victim, fighter, attack_value);
 	}
 	// Make it display " Missed " instead of appearing the ugly zero
-	else if (attack_value == 0) { std::cout << "Missed" << std::endl; }
+	else if (attack_value == 0) { std::cout << "Missed" << "\n"; }
 	else { // check if the player cant defend, otherwise he gets hit 
 		CombatSystem::HitLog(fighter, victim, attack_value);
 		victim.getHit(attack_value);
