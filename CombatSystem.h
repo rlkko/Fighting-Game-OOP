@@ -9,6 +9,6 @@ namespace CombatSystem {
 	void DefendLog(Player& fighter, Player& victim, int rand_attack);
 	void InitLog();
 	bool CheckWinner();
-	void Fight(int attack_value, int defense_value, Player& fighter, Player& victim);
+	void Fight(int attackValue, int defenseValue, Player& fighter, Player& victim);
 	void StartFight();
 }
