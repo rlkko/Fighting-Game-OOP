@@ -12,8 +12,8 @@ private:
 
 public:
 
-	short getRandAttack() const { return rand() % this->attack; }
-	short getRandDefense() const { return rand() % this->defense; }
+	constexpr short getRandAttack() const { return rand() % this->attack; }
+	constexpr short getRandDefense() const { return rand() % this->defense; }
 
 	Player() {Player DefaultPlayer(this->name = "Default", this->hp = 100, this->attack = 20, this->defense = 30, this->luck = 0.2f);}
 
@@ -22,14 +22,14 @@ public:
 
 	short getHit(uint16_t Enemydmg) { return this->hp -= Enemydmg; }
 
-	bool isDead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
+	constexpr bool isDead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
 
 	//Creating getters for the attributes so we can use them
-	std::string getName() const { return this->name; }
-	short getHp() const { return this->hp; }
-	short getAttackInfo() const { return this->attack; }
-	short getDefenseInfo() const { return this->defense; }
-	float getLuck() const { return this->luck; }
+	constexpr std::string getName() const { return this->name; }
+	constexpr short getHp() const { return this->hp; }
+	constexpr short getAttackInfo() const { return this->attack; }
+	constexpr short getDefenseInfo() const { return this->defense; }
+	constexpr float getLuck() const { return this->luck; }
 };
 
 //Override the Operator "<<" to be able to print out the player object
