@@ -1,28 +1,22 @@
 #pragma once
 #include "stdafx.h"
 
-//Set the Base attributes
-#define BASE_HP 100
-#define BASE_ATTACK 50
-#define BASE_DEFENSE 30
-#define BASE_LUCK 0.30f
-
 class Player
 {
 private:
-	const std::string name = "Default";
-	short hp = BASE_HP;
-	unsigned short attack = BASE_ATTACK;
-	unsigned short defense = BASE_DEFENSE;
-	float luck = BASE_LUCK;
+	const std::string name;
+	int16_t hp;
+	uint16_t attack;
+	uint16_t defense;
+	float luck;
 
 public:
-	//dont forget to use the srand function before using these
+
 	short getRandAttack() const { return rand() % this->attack; }
 	short getRandDefense() const { return rand() % this->defense; }
 
 	//declare a Default player model
-	Player() {Player PlayerModel(this->name , this->hp, this->attack, this->defense , this->luck);}
+	Player() {Player PlayerModel(this->name = "Default", this->hp = 100, this->attack = 20, this->defense = 30, this->luck = 0.2f);}
 
 	//Define a costum player model
 	Player(const std::string theName, short theHp, unsigned short theAttack, unsigned short theDefense, float theLuck) :name(theName), hp(theHp), attack(theAttack), luck(theLuck) { }
