@@ -15,16 +15,13 @@ public:
 	short getRandAttack() const { return rand() % this->attack; }
 	short getRandDefense() const { return rand() % this->defense; }
 
-	//declare a Default player model
-	Player() {Player PlayerModel(this->name = "Default", this->hp = 100, this->attack = 20, this->defense = 30, this->luck = 0.2f);}
+	Player() {Player DefaultPlayer(this->name = "Default", this->hp = 100, this->attack = 20, this->defense = 30, this->luck = 0.2f);}
 
 	//Define a costum player model
-	Player(const std::string theName, short theHp, unsigned short theAttack, unsigned short theDefense, float theLuck) :name(theName), hp(theHp), attack(theAttack), luck(theLuck) { }
+	Player(const std::string theName = "Non", int16_t theHp= 100, uint16_t theAttack = 20, uint16_t theDefense =30, float theLuck = 0.2f) :name(theName), hp(theHp), attack(theAttack), luck(theLuck) { }
 
-	//Get dmg by other player
-	short getHit(short Enemydmg) { return this->hp -= Enemydmg; }
+	short getHit(uint16_t Enemydmg) { return this->hp -= Enemydmg; }
 
-	//Check if the player is dead
 	bool isDead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
 
 	//Creating getters for the attributes so we can use them
