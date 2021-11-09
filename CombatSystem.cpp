@@ -16,12 +16,12 @@ void CombatSystem::AddDefaultPlayer() {
 }
 
 //All the logs to be displayed to the user
-void CombatSystem::HitLog(Player& fighter, Player& victim, int rand_attack) {
-	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << rand_attack << " - HP: " << (victim.getHp() - rand_attack) << "\n";
+void CombatSystem::HitLog(Player& fighter, Player& victim, int randAttack) {
+	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << randAttack << " - HP: " << (victim.getHp() - randAttack) << "\n";
 }
 
-void CombatSystem::DefendLog(Player& fighter, Player& victim, int rand_attack) {
-	std::cout << victim.getName() << " Defended " << fighter.getName() << "'s attack for " << rand_attack << " - HP: " << victim.getHp() << "\n";
+void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttack) {
+	std::cout << victim.getName() << " Defended " << fighter.getName() << "'s attack for " << randAttack << " - HP: " << victim.getHp() << "\n";
 }
 
 void CombatSystem::InitLog() {
@@ -47,8 +47,7 @@ bool CombatSystem::CheckWinner() {
 	return false;
 }
 
-void CombatSystem::Fight(int attackValue, int defenseValue, Player& fighter, Player& victim) {
-
+void CombatSystem::void Fight(uint32_t attackValue, uint32_t defenseValue, Player& fighter, Player& victim) {
 	//Check if the player defends or not the attack
 	if (defenseValue > attackValue) {
 		CombatSystem::DefendLog(victim, fighter, attackValue);
