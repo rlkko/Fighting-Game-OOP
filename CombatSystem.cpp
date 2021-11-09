@@ -37,9 +37,9 @@ void CombatSystem::InitLog() {
 bool CombatSystem::CheckWinner() {
 	//check each player by reference
 	for (Player& player : players) {
-		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.is_dead() << "\n";
-		//check if the player is dead with the "is_dead()" function in the Player Class
-		if (player.is_dead()) {
+		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.isDead() << "\n";
+		//check if the player is dead with the "isDead()" function in the Player Class
+		if (player.isDead()) {
 			std::cout << player.getName() << " is dead! " << std::endl;
 			return true;
 		}
@@ -47,17 +47,17 @@ bool CombatSystem::CheckWinner() {
 	return false;
 }
 
-void CombatSystem::Fight(int attack_value, int defense_value, Player& fighter, Player& victim) {
+void CombatSystem::Fight(int attackValue, int defenseValue, Player& fighter, Player& victim) {
 
 	//Check if the player defends or not the attack
-	if (defense_value > attack_value) {
-		CombatSystem::DefendLog(victim, fighter, attack_value);
+	if (defenseValue > attackValue) {
+		CombatSystem::DefendLog(victim, fighter, attackValue);
 	}
 	// Make it display " Missed " instead of appearing the ugly zero
-	else if (attack_value == 0) { std::cout << "Missed" << "\n"; }
+	else if (attackValue == 0) { std::cout << "Missed" << "\n"; }
 	else { // check if the player cant defend, otherwise he gets hit 
-		CombatSystem::HitLog(fighter, victim, attack_value);
-		victim.getHit(attack_value);
+		CombatSystem::HitLog(fighter, victim, attackValue);
+		victim.getHit(attackValue);
 	}
 }
 
