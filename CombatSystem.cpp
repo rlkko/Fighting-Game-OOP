@@ -11,7 +11,7 @@ void CombatSystem::AddPlayer(std::string name, int16_t hp, int16_t attack, uint1
 	// Last parameter is NULL because the feature is not implemented yet
 }
 
-void CombatSystem::AddDefaultPlayer() {
+void CombatSystem::AddPlayer() {
 	players.push_back(Player());
 }
 
@@ -30,7 +30,7 @@ void CombatSystem::InitLog() {
  
 	//print the player data with the overrided operator "<<" for each player
 	for (Player& eachPlayer : players) {
-		std::cout << eachPlayer << std::endl;
+		std::cout << eachPlayer << "\n";
 	}
 }
 
@@ -40,7 +40,7 @@ bool CombatSystem::CheckWinner() {
 		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.isDead() << "\n";
 		//check if the player is dead with the "isDead()" function in the Player Class
 		if (player.isDead()) {
-			std::cout << player.getName() << " is dead! " << std::endl;
+			std::cout << player.getName() << " is dead! " << "\n";
 			return true;
 		}
 	}
