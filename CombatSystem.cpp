@@ -6,7 +6,7 @@
 
 std::vector<Player> players;
 
-void CombatSystem::AddPlayer(std::string name,short hp,unsigned short attack,unsigned short defense) {
+void CombatSystem::AddPlayer(std::string name, int16_t hp, int16_t attack, uint16_t defense) {
 	players.push_back(Player(name,hp,attack,defense,NULL)); 
 	// Last parameter is NULL because the feature is not implemented yet
 }
@@ -16,7 +16,7 @@ void CombatSystem::AddDefaultPlayer() {
 }
 
 //All the logs to be displayed to the user
-void CombatSystem::HitLog(Player& fighter, Player& victim, int randAttack) {
+void CombatSystem::HitLog(Player& fighter, Player& victim, uint32_t rand_attack) {
 	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << randAttack << " - HP: " << (victim.getHp() - randAttack) << "\n";
 }
 
@@ -47,7 +47,7 @@ bool CombatSystem::CheckWinner() {
 	return false;
 }
 
-void CombatSystem::void Fight(uint32_t attackValue, uint32_t defenseValue, Player& fighter, Player& victim) {
+void CombatSystem::Fight(uint32_t attackValue, uint32_t defenseValue, Player& fighter, Player& victim) {
 	//Check if the player defends or not the attack
 	if (defenseValue > attackValue) {
 		CombatSystem::DefendLog(victim, fighter, attackValue);
