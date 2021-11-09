@@ -31,7 +31,7 @@ public:
 	short getHit(short Enemydmg) { return this->hp -= Enemydmg; }
 
 	//Check if the player is dead
-	bool is_dead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
+	bool isDead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
 
 	//Creating getters for the attributes so we can use them
 	std::string getName() const { return this->name; }
