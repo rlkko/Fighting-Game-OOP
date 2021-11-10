@@ -1,4 +1,4 @@
-// Revisao.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Main.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //By zei.
 
 //Essential includes
@@ -10,7 +10,7 @@ int main()
 {
 	//PlayerModel(name , hp, attack, defense)
 	CombatSystem::AddPlayer("John", 100, 50, 20);
-	CombatSystem::AddDefaultPlayer();
+	CombatSystem::AddPlayer();
 
 	//Game initializes
 	CombatSystem::InitLog();
