@@ -33,6 +33,7 @@ public:
 };
 
 //Override the Operator "<<" to be able to print out the player object
+inline
 std::ostream& operator<< (std::ostream& obj, Player& player) {
 	return obj << "Name: " << player.getName() << std::endl <<
 		"HP: " << player.getHp() << std::endl <<
