@@ -11,5 +11,5 @@ namespace CombatSystem {
 	void HitLog(Player& fighter, Player& victim, uint32_t rand_attack);
 	void DefendLog(Player& fighter, Player& victim, uint32_t rand_attack);
 	void Fight(uint32_t attackValue, uint32_t defenseValue, Player& fighter, Player& victim);
-	
+
 }
