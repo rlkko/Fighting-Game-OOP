@@ -7,7 +7,7 @@
 std::vector<Player> players;
 
 void CombatSystem::AddPlayer(std::string name, int16_t hp, int16_t attack, uint16_t defense) {
-	players.push_back(Player(name,hp,attack,defense,NULL)); 
+	players.push_back(Player(name, hp, attack, defense, NULL));
 	// Last parameter is NULL because the feature is not implemented yet
 }
 
@@ -16,7 +16,7 @@ void CombatSystem::AddPlayer() {
 }
 
 //All the logs to be displayed to the user
-void CombatSystem::HitLog(Player& fighter, Player& victim, uint32_t rand_attack) {
+void CombatSystem::HitLog(Player& fighter, Player& victim, uint32_t randAttack) {
 	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << randAttack << " - HP: " << (victim.getHp() - randAttack) << "\n";
 }
 
@@ -27,7 +27,7 @@ void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttac
 void CombatSystem::InitLog() {
 	// pseudo-random number generator is initialized using the argument passed as seed.
 	srand(time(NULL));
- 
+
 	//print the player data with the overrided operator "<<" for each player
 	for (Player& eachPlayer : players) {
 		std::cout << eachPlayer << "\n";
