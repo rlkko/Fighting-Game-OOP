@@ -7,9 +7,8 @@ static uint16_t number = 0;
 class Player
 {
 private:
-	uint16_t number = number;
-	std::string name;
-	int16_t hp;
+	std::string name = "";
+	int16_t hp = 0;
 	uint16_t defense = 0;
 	float luck = 0;
 	std::vector<Attack> AttackList;
