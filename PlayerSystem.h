@@ -2,19 +2,18 @@
 #include "stdafx.h"
 #include "Player.h"
 
-#define Default 1
+static uint16_t Playercounter = 0;
+static std::vector<Player> playerVector;
 
-	static std::vector<Player> players = { Player(Default),Player(Default),Player(Default),Player(Default) };
-	static uint16_t Playercounter = 0;
+class PlayerSystem {
 
-namespace PlayerSystem {
-
+public:
 	void setPlayer(std::string name, int16_t hp, uint16_t defense);
-	void setPlayer(uint16_t DefaultPresetNumber);
-	//void resetPlayer(uint16_t index) { players[index] = Player(Default); }
+	void setPresetPlayer(uint16_t DefaultPresetNumber);
+	inline void resetPlayer(uint16_t index) { playerVector.at(index) = Player(Default); }
 
 	void setPlayerAttack(uint16_t index, std::string name, std::string description, uint16_t dmg);
-	
-	// Remember to initialize the players first
-	//std::vector<Player> returnPlayers() { if (players.empty()) return players; else return 0; };
+
+	std::vector<Player> getPlayerVector() { return playerVector; }
+	void getPlayerData(std::vector<Player> playervec);
 };

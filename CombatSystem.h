@@ -1,9 +1,11 @@
 #pragma once
 #include "stdafx.h"
+#include "PlayerSystem.h"
 #include "Player.h"
 
 namespace CombatSystem {
-	void InitLog();
+
+	void Start(PlayerSystem gameObject);
 	void HitLog(Player& fighter, Player& victim, uint32_t rand_attack);
 	void DefendLog(Player& fighter, Player& victim, uint32_t rand_attack);
 	bool SetFighters();

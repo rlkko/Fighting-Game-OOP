@@ -4,10 +4,10 @@
 
 void PlayerSystem::setPlayer(std::string name, int16_t hp, uint16_t defense)
 {
-	Player createdPlayer = Player(name, hp, defense, NULL);
+	Player createdPlayer = Player(name, hp, defense);
 	if(Playercounter < 4)
 	{
-		players.at(Playercounter) = createdPlayer;
+		playerVector.push_back(createdPlayer);
 	}
 	else 
 	{
@@ -17,10 +17,10 @@ void PlayerSystem::setPlayer(std::string name, int16_t hp, uint16_t defense)
 	Playercounter++;
 }
 
-void PlayerSystem::setPlayer(uint16_t DefaultPresetNumber) {
+void PlayerSystem::setPresetPlayer(uint16_t DefaultPresetNumber) {
 	if (Playercounter < 4)
 	{
-		players.at(Playercounter) = Player(DefaultPresetNumber);
+		playerVector.push_back(Player(DefaultPresetNumber));
 	}
 	else
 	{
@@ -32,5 +32,10 @@ void PlayerSystem::setPlayer(uint16_t DefaultPresetNumber) {
 
 void PlayerSystem::setPlayerAttack(uint16_t index, std::string name, std::string description, uint16_t dmg) 
 {
-	players.at(index).AddAttack(name, description, dmg);
+//	players.at(index).AddAttack(name, description, dmg);
+}
+
+void PlayerSystem::getPlayerData(std::vector<Player> playervec)
+{
+	playervec = getPlayerVector();
 }

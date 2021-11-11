@@ -1,16 +1,14 @@
 #include "stdafx.h"
-#include "Player.h"
 #include "CombatSystem.h"
-#include "PlayerSystem.h"
 
-std::vector<Player> playerList;
-Player& player1 = playerList.at(0);
-Player& player2 = playerList.at(1);
+std::vector<Player> players;
 
 bool CombatSystem::SetFighters() {
-	//playerList = PlayerSystem::returnPlayers();
 
-	return !playerList.empty();
+	Player& player1 = players.at(0);
+	Player& player2 = players.at(1);
+
+	return !players.empty();
 }
 
 //All the logs to be displayed to the user
@@ -22,18 +20,23 @@ void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttac
 	std::cout << victim.getName() << " Defended " << fighter.getName() << "'s attack for " << randAttack << " - HP: " << victim.getHp() << "\n";
 }
 
-void CombatSystem::InitLog() {
+void CombatSystem::Start(PlayerSystem gameObject) {
 
-	//print the player data with the overrided operator "<<" for each player
-	for (Player eachPlayer : playerList) {
-		std::cout << eachPlayer << "\n";
-		//eachPlayer.getPlayerAttacks();
+	gameObject.getPlayerData(players);
+
+	if (CombatSystem::SetFighters()) 
+	{
+		//print the player data with the overrided operator "<<" for each player
+		for (Player eachPlayer : players) {
+			std::cout << eachPlayer << "\n";
+			eachPlayer.getPlayerAttacks();
+		}
 	}
 }
 
 bool CombatSystem::CheckWinner() {
 	//check each player by reference
-	for (Player& player : playerList) {
+	for (Player& player : players) {
 		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.isDead() << "\n";
 		//check if the player is dead with the "isDead()" function in the Player Class
 		if (player.isDead()) {
