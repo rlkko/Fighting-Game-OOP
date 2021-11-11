@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "Attack.h"
 
-static uint16_t number = 0;
 
 class Player
 {
@@ -17,7 +16,7 @@ public:
 	short getRandDefense() const { return rand() % this->defense; }
 
 	//Constructor
-	Player(const std::string theName, int16_t theHp, uint16_t theDefense, float theLuck) :name(theName), hp(theHp), defense(theDefense), luck(theLuck) { number++; }
+	Player(const std::string theName, int16_t theHp, uint16_t theDefense) :name(theName), hp(theHp), defense(theDefense) {}
 
 	//PlayerModels
 	Player(uint32_t presetNumber) {
@@ -32,7 +31,7 @@ public:
 		switch (presetNumber)
 		{
 		case 1:
-			Player DefaultPlayer(this->name = "Default", this->hp = 100, this->defense = 30, this->luck = 0.2f);
+			Player DefaultPlayer(this->name = "Default", this->hp = 100, this->defense = 30);
 			break;
 		}//doing a default case would break the initialization
 
@@ -49,7 +48,12 @@ public:
 	constexpr float getLuck() { return this->luck; }
 	
 	void AddAttack(std::string name,std::string description,uint32_t attack) {
-		AttackList.push_back(Attack(name, description, attack));
+		if(AttackList.size() < 4){
+			AttackList.push_back(Attack(name, description, attack));
+		}
+		else {
+			std::cout << "Attack Limit reached!" << std::endl;
+		}
 	}
 
 	void getPlayerAttacks() {
