@@ -1,25 +1,41 @@
 #pragma once
+
 #include "stdafx.h"
+
 class Attack
 {
 private:
 	std::string Name;
 	std::string Description;
-	uint32_t Dmg;
+	uint32_t Dmg = 0;
 
 public:
 
-	Attack() 
-	{
-		this->Name = "Default";
-		this->Description = "Default Attack";
-		this->Dmg = 30;
-	}
-
 	Attack(std::string name, std::string description, uint32_t dmg) : Name(name), Description(description), Dmg(dmg) {}
 
-	std::string get_name() { return this->Name; }
-	std::string get_description() { return this->Name; }
-	std::uint32_t get_dmg() { return this->Dmg; }
+	//Attack Models - feel free to add
+
+	Attack(uint32_t number) {
+		switch (number)
+		{
+		case 1:
+			Attack Default = Attack("Default", "Default Attack", 30);
+		}
+
+	}
+
+	//Creating getters for the attributes so we can use them
+	std::string getName() { return this->Name; }
+	std::string getDescription() { return this->Description; }
+	std::uint32_t getDmgInfo() { return this->Dmg; }
+
+	uint16_t getRandDamage() { return rand() % this->Dmg; }
 
 };
+
+//Operator overload so we can use it later
+inline
+std::ostream& operator<< (std::ostream& obj, Attack& attack) {
+	return	obj << attack.getName() << " - " << attack.getDmgInfo() << " DMG\n"
+			    << attack.getDescription() << "\n";
+}
