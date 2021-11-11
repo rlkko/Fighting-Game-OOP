@@ -8,7 +8,7 @@ Player& player1 = playerList.at(0);
 Player& player2 = playerList.at(1);
 
 bool CombatSystem::SetFighters() {
-	playerList = PlayerSystem::returnPlayers();
+	//playerList = PlayerSystem::returnPlayers();
 
 	return !playerList.empty();
 }
