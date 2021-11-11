@@ -10,16 +10,14 @@ private:
 	uint32_t Dmg = 0;
 
 public:
-
 	Attack(std::string name, std::string description, uint32_t dmg) : Name(name), Description(description), Dmg(dmg) {}
 
-	//Attack Models - feel free to add
-
+	//Attack Presets - feel free to add
 	Attack(uint32_t number) {
 		switch (number)
 		{
 		case 1:
-			Attack Default = Attack("Default", "Default Attack", 30);
+			Attack PresetOne = Attack("Default", "Default Attack", 30);
 		}
 
 	}
