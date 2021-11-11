@@ -9,19 +9,17 @@
 int main()
 {
 	// pseudo-random number generator is initialized using the argument passed as seed.
-	srand(time(NULL));
-	//PlayerSystem Game;
+	srand(static_cast<uint32_t>(time(nullptr)));
 
 	//You can add up to two players
-	//Game.SetPlayer(1,"John", 100, 20);
-	//Game.SetPlayerAttack(1,"Powerful Punch", "This punch has been blessed by god!", 50);
+	PlayerSystem::setPlayer("John", 100, 20);
+	PlayerSystem::setPlayerAttack(1,"Powerful Punch", "This punch has been blessed by god!", 50);
 
-	//Game.SetPlayer(2,"Miguel",100,50);
+	//Default Player Preset
+	PlayerSystem::setPresetPlayer(Default);
 
 	//Game initializes
-	//CombatSystem::SetFighters();
-
-	CombatSystem::StartFight();
+	CombatSystem::Start();
 
 	//Temp
 	std::cin.get();
