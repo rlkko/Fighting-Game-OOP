@@ -1,18 +1,16 @@
 #include "stdafx.h"
+#include "Player.h"
 #include "CombatSystem.h"
+#include "PlayerSystem.h"
 
-#define FIRST 0
-#define SECOND 1
+std::vector<Player> playerList;
+Player& player1 = playerList.at(0);
+Player& player2 = playerList.at(1);
 
-std::vector<Player> players;
+bool CombatSystem::SetFighters() {
+	playerList = PlayerSystem::returnPlayers();
 
-void CombatSystem::AddPlayer(std::string name, int16_t hp, int16_t attack, uint16_t defense) {
-	players.push_back(Player(name, hp, attack, defense, NULL));
-	// Last parameter is NULL because the feature is not implemented yet
-}
-
-void CombatSystem::AddPlayer() {
-	players.push_back(Player());
+	return !playerList.empty();
 }
 
 //All the logs to be displayed to the user
@@ -25,18 +23,17 @@ void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttac
 }
 
 void CombatSystem::InitLog() {
-	// pseudo-random number generator is initialized using the argument passed as seed.
-	srand(time(NULL));
 
 	//print the player data with the overrided operator "<<" for each player
-	for (Player& eachPlayer : players) {
+	for (Player eachPlayer : playerList) {
 		std::cout << eachPlayer << "\n";
+		//eachPlayer.getPlayerAttacks();
 	}
 }
 
 bool CombatSystem::CheckWinner() {
 	//check each player by reference
-	for (Player& player : players) {
+	for (Player& player : playerList) {
 		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.isDead() << "\n";
 		//check if the player is dead with the "isDead()" function in the Player Class
 		if (player.isDead()) {
@@ -61,24 +58,23 @@ void CombatSystem::Fight(uint32_t attackValue, uint32_t defenseValue, Player& fi
 }
 
 void CombatSystem::StartFight() {
-	bool turn = true;
+	bool turn = true ;
 
-	//Initialize the palyers
-	Player& player1 = players[FIRST];
-	Player& player2 = players[SECOND];
-
+	//CombatSystem::InitLog();
 	do {
 		turn = !turn;
 
 		//Create a turn changing system
 		if (turn) { // player 1's turn	
 
-			CombatSystem::Fight(player1.getRandAttack(), player2.getRandDefense(), player1, player2);
+			//TO DO: attack get dmg
+			//CombatSystem::Fight(player1.).getRandAttack(), player2.getRandDefense(), player1, player2);
 
 		}
 		else { // player 2's turn
 
-			CombatSystem::Fight(player2.getRandAttack(), player1.getRandDefense(), player2, player1);
+			//TO DO: attack get dmg
+			//CombatSystem::Fight(player2.getRandAttack(), player1.getRandDefense(), player2, player1);
 
 		}
 		Sleep(500);
