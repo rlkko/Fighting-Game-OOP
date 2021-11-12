@@ -12,7 +12,7 @@ void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttac
 
 void CombatSystem::Start() {
 
-	for(Player& player:game.getPlayerVector()){
+	for(Player player:game.getPlayerVector()){
 		if (player.getAttacks().empty())
 		{
 			//Attack one is the default Attack
@@ -20,8 +20,8 @@ void CombatSystem::Start() {
 		}
 	}
 
+	
 	game.showPlayerData();
-
 }
 
 bool CombatSystem::CheckWinner() {

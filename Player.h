@@ -36,6 +36,7 @@ public:
 		{
 		case 1:
 			Player DefaultPlayer(this->name = "Default", this->hp = 100, this->defense = 30);
+			AttackList.push_back(Attack(1));
 			break;
 		}//doing a default case would break the initialization
 	}
@@ -63,7 +64,7 @@ public:
 		}
 	}
 
-	void AddAttack(std::string name,std::string description,uint32_t attack) {
+	void AddAttack(std::string name,std::string description,uint16_t attack) {
 
 		if(AttackList.size() < MAX_ATTACKS)
 		{

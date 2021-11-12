@@ -17,7 +17,7 @@ public:
 	inline void resetPlayer(uint16_t index) { playerVector.at(index) = Player(Default); }
 
 	void getPlayerAttackList(Player& fighter) { fighter.getAttacks(); }
-	void setPlayerAttack(uint16_t index, std::string name, std::string description, uint16_t dmg);
+	void setPlayerAttack(uint16_t index, std::string name, std::string description, uint32_t dmg);
 
 	void showPlayerData();
 	std::vector<Player> getPlayerVector() { return playerVector; }

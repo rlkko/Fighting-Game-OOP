@@ -8,8 +8,8 @@
 class Attack
 {
 private:
-	std::string Name;
-	std::string Description;
+	std::string Name = "";
+	std::string Description = "";
 	uint32_t Dmg = 0;
 
 public:
@@ -22,7 +22,6 @@ public:
 		case 1:
 			Attack DefaultPreset = Attack(this->Name = "Default",this->Description = "Default Attack",this->Dmg = 30);
 		}
-
 	}
 
 	//Creating getters for the attributes so we can use them
@@ -38,5 +37,5 @@ public:
 inline
 std::ostream& operator<< (std::ostream& obj, Attack& attack) {
 	return	obj << attack.getName() << " - " << attack.getDmgInfo() << " DMG\n"
-			    << attack.getDescription() << "\n";
+			    <<"Description: " << attack.getDescription() << "\n";
 }

@@ -32,18 +32,18 @@ void PlayerSystem::setPresetPlayer(uint16_t DefaultPresetNumber) {
 
 void PlayerSystem::showPlayerData()
 {
+	std::vector<Player>& gameVec = playerVector;
 	//print the player data with the overrided operator "<<" for each player
-	for (Player& eachPlayer : playerVector) {
+	for (Player& eachPlayer : gameVec) {
 		std::cout << eachPlayer << "\n";
 		eachPlayer.showPlayerAttacks();
 	}
 }
 
-void PlayerSystem::setPlayerAttack(uint16_t index, std::string name, std::string description, uint16_t dmg) 
+void PlayerSystem::setPlayerAttack(uint16_t index, std::string name, std::string description, uint32_t dmg) 
 {
-	std::vector<Player> playerVector = getPlayerVector();
-	if(index <= playerVector.size())
-	playerVector.at(index+1).AddAttack(name, description, dmg);
+	if (index <= playerVector.size())
+		playerVector.at(index).AddAttack(name,description,dmg);
 	else {
 		std::cout << "Player Attack index error!\n";
 	}
