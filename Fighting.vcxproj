@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Attack.h" />
     <ClInclude Include="CombatSystem.h" />
+    <ClInclude Include="Fight.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerSystem.h" />
     <ClInclude Include="stdafx.h" />

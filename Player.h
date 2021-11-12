@@ -1,3 +1,6 @@
+//Player.h
+//Made by rikkoRicardo
+
 #pragma once
 #include "stdafx.h"
 #include "Attack.h"
@@ -46,7 +49,20 @@ public:
 	constexpr short getHp() { return this->hp; }
 	constexpr short getDefenseInfo() { return this->defense; }
 	constexpr float getLuck() { return this->luck; }
-	
+	std::vector<Attack> getAttacks() { return this->AttackList; }
+
+	void AddPresetAttack(uint16_t presetNumber) {
+
+		if (AttackList.size() < MAX_ATTACKS)
+		{
+			AttackList.push_back(Attack(1));
+		}
+		else
+		{
+			std::cout << "Attack Limit reached!" << std::endl;
+		}
+	}
+
 	void AddAttack(std::string name,std::string description,uint32_t attack) {
 
 		if(AttackList.size() < MAX_ATTACKS)
@@ -59,14 +75,8 @@ public:
 		}
 	}
 
-	void getPlayerAttacks() 
+	void showPlayerAttacks() 
 	{
-		if (AttackList.empty()) 
-		{
-			//Attack one is the default Attack
-			this->AttackList.push_back(Attack(1));
-		}
-
 		for (Attack& attack : AttackList) {
 			std::cout << attack << '\n';
 		}
@@ -80,6 +90,5 @@ std::ostream& operator<< (std::ostream& obj,Player& player)
 {
 	return obj << "Name: " << player.getName() <<
 				"\nHP: " << player.getHp() <<
-				"\nDefense: " << player.getDefenseInfo() <<
-				"\nLuck: " << player.getLuck() * 100 << '\n';
+				"\nDefense: " << player.getDefenseInfo() << '\n';
 }

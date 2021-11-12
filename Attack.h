@@ -1,3 +1,6 @@
+//Attack.h - The Attack class to make the attacks easy to manage
+//made by RikkoRicardo
+
 #pragma once
 
 #include "stdafx.h"
@@ -17,7 +20,7 @@ public:
 		switch (number)
 		{
 		case 1:
-			Attack PresetOne = Attack("Default", "Default Attack", 30);
+			Attack DefaultPreset = Attack(this->Name = "Default",this->Description = "Default Attack",this->Dmg = 30);
 		}
 
 	}

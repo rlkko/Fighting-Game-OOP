@@ -1,3 +1,6 @@
+//CombatSystem.h - All the logs and checks needed for the combat are located here
+//Made by RikkoRicardo
+
 #pragma once
 #include "stdafx.h"
 #include "PlayerSystem.h"
@@ -5,10 +8,9 @@
 
 namespace CombatSystem {
 
-	void Start(PlayerSystem gameObject);
+	void Start();
 	void HitLog(Player& fighter, Player& victim, uint32_t rand_attack);
 	void DefendLog(Player& fighter, Player& victim, uint32_t rand_attack);
-	bool SetFighters();
 	
 	bool CheckWinner();
 	void StartFight();
