@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "PlayerSystem.h"
 
-
 void PlayerSystem::setPlayer(std::string name, int16_t hp, uint16_t defense)
 {
 	Player createdPlayer = Player(name, hp, defense);
@@ -32,9 +31,8 @@ void PlayerSystem::setPresetPlayer(uint16_t DefaultPresetNumber) {
 
 void PlayerSystem::showPlayerData()
 {
-	std::vector<Player>& gameVec = playerVector;
 	//print the player data with the overrided operator "<<" for each player
-	for (Player& eachPlayer : gameVec) {
+	for (Player& eachPlayer : playerVector) {
 		std::cout << eachPlayer << "\n";
 		eachPlayer.showPlayerAttacks();
 	}

@@ -5,7 +5,6 @@
 #include "stdafx.h"
 #include "Player.h"
 
-
 class PlayerSystem {
 private:
 	uint16_t Playercounter = 0;

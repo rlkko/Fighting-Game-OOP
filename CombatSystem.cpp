@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CombatSystem.h"
 
+PlayerSystem game;
+
 //All the logs to be displayed to the user
 void CombatSystem::HitLog(Player& fighter, Player& victim, uint32_t randAttack) {
 	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << randAttack << " - HP: " << (victim.getHp() - randAttack) << "\n";
@@ -11,16 +13,15 @@ void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttac
 }
 
 void CombatSystem::Start() {
+	
 
-	for(Player player:game.getPlayerVector()){
+	for(Player& player:game.getPlayerVector()){
 		if (player.getAttacks().empty())
 		{
 			//Attack one is the default Attack
-			player.AddPresetAttack(1);
+			player.AddPresetAttack(Default);
 		}
 	}
-
-	
 	game.showPlayerData();
 }
 
@@ -72,5 +73,5 @@ void CombatSystem::StartFight() {
 		}
 		Sleep(500);
 
-	} while (!CombatSystem::CheckWinner()); // if false - repeat , if true exits
+	} while (!CombatSystem::CheckWinner()); // if false - repeat , if true returns
 }

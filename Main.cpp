@@ -16,7 +16,6 @@ int main()
 
 	game.setPresetPlayer(Default);
 
-
 	CombatSystem::Start();
 	
 	//Temp

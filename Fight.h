@@ -5,7 +5,5 @@
 #include "stdafx.h"
 #include "PlayerSystem.h"
 #include "CombatSystem.h"
-#include "Player.h"
-#include "Attack.h"
 
-static PlayerSystem game;
+extern PlayerSystem game;

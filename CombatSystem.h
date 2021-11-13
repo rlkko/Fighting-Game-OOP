@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "PlayerSystem.h"
 #include "Player.h"
+#include "Fight.h"
 
 namespace CombatSystem {
 
