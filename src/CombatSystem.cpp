@@ -2,7 +2,7 @@
 #include "CombatSystem.h"
 #include <map>
 
-//Initialized variable to use the external one
+//Prototype variable to be replaced in the runtime
 PlayerSystem game;
 
 //Map to store all the fighters and index
@@ -49,21 +49,23 @@ void CombatSystem::StartCombat() {
 }
 
 void CombatSystem::CheckHit(Player& fighter, Player& victim) {
-	Attack nextAttack = fighter.getNextAttack();
-	uint32_t attackValue = nextAttack.getRandDamage();
-	uint32_t defenseValue = victim.getRandDefense();
+	const Attack& nextAttack = fighter.getNextAttack();
+	const uint32_t& attackValue = nextAttack.getRandDamage();
+	const uint32_t& defenseValue = victim.getRandDefense();
 
 	// Make it display " Missed " instead of appearing the ugly zero
-	if (attackValue == 0) { std::cout << fighter.getName() << " Missed!" << "\n\n"; return; }
-
-	if (attackValue > defenseValue) 
-	{//next attack operator>> overloaded
-		victim.getHit(attackValue);
-		std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
-	}
+	if (!attackValue) { std::cout << fighter.getName() << " Missed!" << "\n\n"; return; }
 	else 
-	{//next attack operator>> overloaded
-		std::cout << victim.getName() << " Defendeds " << fighter.getName() << "'s " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
+	{
+		if (attackValue > defenseValue) 
+		{
+			victim.getHit(attackValue);
+			std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
+		}
+		else 
+		{
+			std::cout << victim.getName() << " Defendeds " << fighter.getName() << "'s " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
+		}
 	}
 }
 
