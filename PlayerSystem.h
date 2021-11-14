@@ -20,8 +20,8 @@ public:
 	void setPlayerAttack(uint16_t index, std::string name, std::string description, uint32_t dmg);
 	
 	Player setPreferedFighter();
-	Player setRandEnemy(Player preferredFighter);
+	Player setRandEnemy(Player& preferredFighter);
 
 	void showPlayerData();
-	std::vector<Player> getPlayerVector() { return playerVector; }
+	std::vector<Player> getPlayerVector() const { return playerVector; }
 };

@@ -18,7 +18,7 @@ Player PlayerSystem::setPreferedFighter() {
 	return playerVector[chosenFighter];
 }
 
-Player PlayerSystem::setRandEnemy(Player preferredFighter) 
+Player PlayerSystem::setRandEnemy(Player& preferredFighter )
 {
 	for (Player player : playerVector) {
 		if (player.getName() != preferredFighter.getName())

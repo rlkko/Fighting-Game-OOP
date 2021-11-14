@@ -20,14 +20,14 @@ public:
 		switch (number)
 		{
 		case 1:
-			Attack DefaultPreset = Attack(this->Name = "Default",this->Description = "Default Attack",this->Dmg = 30);
+			Attack DefaultPreset = Attack(this->Name = "Default Attack",this->Description = "Default Attack",this->Dmg = 30);
 		}
 	}
 
 	//Creating getters for the attributes so we can use them
-	std::string getName() { return this->Name; }
-	std::string getDescription() { return this->Description; }
-	std::uint32_t getDmgInfo() { return this->Dmg; }
+	std::string getName() const { return this->Name; }
+	std::string getDescription() const { return this->Description; }
+	std::uint32_t getDmgInfo() const { return this->Dmg; }
 
 	uint16_t getRandDamage() { return rand() % this->Dmg; }
 

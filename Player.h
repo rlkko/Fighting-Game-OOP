@@ -54,11 +54,11 @@ public:
 
 
 	//Creating getters for the attributes so we can use them
-	std::string getName() { return this->name; }
-	constexpr short getHp() { return this->hp; }
-	constexpr short getDefenseInfo() { return this->defense; }
-	constexpr float getLuck() { return this->luck; }
-	std::vector<Attack> getAttacks() { return this->AttackList; }
+	std::string getName() const { return this->name; }
+	constexpr short getHp() const { return this->hp; }
+	constexpr short getDefenseInfo() const { return this->defense; }
+	constexpr float getLuck() const { return this->luck; }
+	std::vector<Attack> getAttacks() const { return this->AttackList; }
 
 };
 

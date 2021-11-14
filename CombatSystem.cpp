@@ -10,16 +10,17 @@ void CombatSystem::Start() {
 	for(Player& player:game.getPlayerVector()){
 		if (player.getAttacks().empty())
 		{
-			//TO DO: this doesnt work
 			//Attack one is the default Attack
 			player.AddPresetAttack(Default);
 		}
 	}
+
 	game.showPlayerData();
 
-	//First the player number, then the Player
+	//Creating a pair to attribute an id to a player
 	fighterList.insert(std::make_pair(1, game.setPreferedFighter()));
 	fighterList.insert(std::make_pair(2, game.setRandEnemy(fighterList.at(1))));
+	
 	CombatSystem::StartCombat();
 }
 
