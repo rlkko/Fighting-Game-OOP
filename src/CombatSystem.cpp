@@ -49,9 +49,9 @@ void CombatSystem::StartCombat() {
 }
 
 void CombatSystem::CheckHit(Player& fighter, Player& victim) {
-	Attack nextAttack = fighter.getNextAttack();
-	uint32_t attackValue = nextAttack.getRandDamage();
-	uint32_t defenseValue = victim.getRandDefense();
+	const Attack& nextAttack = fighter.getNextAttack();
+	const uint32_t& attackValue = nextAttack.getRandDamage();
+	const uint32_t& defenseValue = victim.getRandDefense();
 
 	// Make it display " Missed " instead of appearing the ugly zero
 	if (!attackValue) { std::cout << fighter.getName() << " Missed!" << "\n\n"; return; }
