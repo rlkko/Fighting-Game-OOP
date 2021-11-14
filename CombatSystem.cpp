@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "CombatSystem.h"
+#include <map>
 
 PlayerSystem game;
-std::vector<std::pair<uint16_t, Player>>fightersVec;
+std::map<uint16_t, Player>fighterList;
 
 void CombatSystem::Start() {
 
@@ -17,9 +18,8 @@ void CombatSystem::Start() {
 	game.showPlayerData();
 
 	//First the player number, then the Player
-	fightersVec.emplace_back(1,game.setPreferedFighter());
-	fightersVec.emplace_back(2,game.setRandEnemy(fightersVec.at(0).second));
-
+	fighterList.insert(std::make_pair(1, game.setPreferedFighter()));
+	fighterList.insert(std::make_pair(2, game.setRandEnemy(fighterList.at(1))));
 	CombatSystem::StartCombat();
 }
 
@@ -31,11 +31,11 @@ void CombatSystem::StartCombat() {
 
 		if (turn)
 		{ // player 1's turn
-			CombatSystem::CheckHit(fightersVec.at(0).second, fightersVec.at(1).second);
+			CombatSystem::CheckHit(fighterList.at(1), fighterList.at(2));
 		}
 		else
 		{ // player 2's turn
-			CombatSystem::CheckHit(fightersVec.at(1).second, fightersVec.at(0).second);
+			CombatSystem::CheckHit(fighterList.at(2), fighterList.at(1));
 		}
 		Sleep(500);
 
@@ -48,23 +48,23 @@ void CombatSystem::CheckHit(Player& fighter, Player& victim) {
 	uint32_t defenseValue = victim.getRandDefense();
 
 	// Make it display " Missed " instead of appearing the ugly zero
-	if (attackValue == 0) { std::cout << fighter.getName() << " Missed!" << "\n"; return; }
+	if (attackValue == 0) { std::cout << fighter.getName() << " Missed!" << "\n\n"; return; }
 
 	if (attackValue > defenseValue) 
 	{//next attack operator>> overloaded
 		victim.getHit(attackValue);
-		std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n";
+		std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
 	}
 	else 
 	{//next attack operator>> overloaded
-		std::cout << victim.getName() << " Defendeds " << fighter.getName() << " 's " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n";
+		std::cout << victim.getName() << " Defendeds " << fighter.getName() << "'s " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
 	}
 }
 
 bool CombatSystem::CheckWinner() 
 {
 	//check each player by reference
-	for (auto& fighter: fightersVec ) {
+	for (auto& fighter: fighterList) {
 		
 		if(fighter.second.isDead()){
 			std::cout << fighter.second.getName() << " is dead! " << "\n";

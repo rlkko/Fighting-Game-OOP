@@ -20,14 +20,10 @@ Player PlayerSystem::setPreferedFighter() {
 
 Player PlayerSystem::setRandEnemy(Player preferredFighter) 
 {
-	Player& enemy = preferredFighter;
-
-	do 
-	{
-		enemy = playerVector.at(rand() % playerVector.size());
-	} while (preferredFighter.getName().compare(enemy.getName()) != 0);
-
-	return enemy;
+	for (Player player : playerVector) {
+		if (player.getName() != preferredFighter.getName())
+			return player;
+	}
 }
 
 void PlayerSystem::setPlayer(std::string name, int16_t hp, uint16_t defense)
