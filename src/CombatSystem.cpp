@@ -2,7 +2,7 @@
 #include "CombatSystem.h"
 #include <map>
 
-//Initialized variable to use the external one
+//Prototype variable to be replaced in the runtime
 PlayerSystem game;
 
 //Map to store all the fighters and index
