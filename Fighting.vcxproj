@@ -146,19 +146,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CombatSystem.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerSystem.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="src\CombatSystem.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerSystem.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Attack.h" />
-    <ClInclude Include="CombatSystem.h" />
-    <ClInclude Include="Fight.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerSystem.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="src\Attack.h" />
+    <ClInclude Include="src\CombatSystem.h" />
+    <ClInclude Include="src\FightingGame.h" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\PlayerSystem.h" />
+    <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,42 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Player">
+      <UniqueIdentifier>{b7a4db5a-0a19-4c04-bc39-fe907841e543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Combat">
+      <UniqueIdentifier>{b36f7175-d67a-44f9-82d5-2292419b0eed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Cabeçalho\Player\Player Components">
+      <UniqueIdentifier>{307985be-3f8d-4603-a17c-d8fcf3f11807}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Arquivos de Recurso</Filter>
     </ClCompile>
-    <ClCompile Include="CombatSystem.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="src\CombatSystem.cpp">
+      <Filter>Arquivos de Cabeçalho\Combat</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Arquivos de Cabeçalho\Player\Player Components</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerSystem.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="src\PlayerSystem.cpp">
+      <Filter>Arquivos de Cabeçalho\Player\Player Components</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="src\stdafx.cpp">
+      <Filter>Arquivos de Recurso</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CombatSystem.h">
+    <ClInclude Include="src\stdafx.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="src\FightingGame.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="src\CombatSystem.h">
+      <Filter>Arquivos de Cabeçalho\Combat</Filter>
     </ClInclude>
-    <ClInclude Include="Attack.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="src\Player.h">
+      <Filter>Arquivos de Cabeçalho\Player\Player Components</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerSystem.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="src\Attack.h">
+      <Filter>Arquivos de Cabeçalho\Player\Player Components</Filter>
     </ClInclude>
-    <ClInclude Include="Fight.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
+    <ClInclude Include="src\PlayerSystem.h">
+      <Filter>Arquivos de Cabeçalho\Player\Player Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
