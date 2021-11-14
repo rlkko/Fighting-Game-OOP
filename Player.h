@@ -42,8 +42,16 @@ public:
 	}
 
 	short getHit(uint16_t Enemydmg) { return this->hp -= Enemydmg; }
-
 	constexpr bool isDead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
+
+	void AddPresetAttack(uint16_t presetNumber);
+
+	Attack getNextAttack();
+	void AddAttack(std::string name, std::string description, uint16_t attack);
+
+	void showPlayerAttacks();
+
+
 
 	//Creating getters for the attributes so we can use them
 	std::string getName() { return this->name; }
@@ -52,44 +60,13 @@ public:
 	constexpr float getLuck() { return this->luck; }
 	std::vector<Attack> getAttacks() { return this->AttackList; }
 
-	void AddPresetAttack(uint16_t presetNumber) {
-
-		if (AttackList.size() < MAX_ATTACKS)
-		{
-			AttackList.push_back(Attack(1));
-		}
-		else
-		{
-			std::cout << "Attack Limit reached!" << std::endl;
-		}
-	}
-
-	void AddAttack(std::string name,std::string description,uint16_t attack) {
-
-		if(AttackList.size() < MAX_ATTACKS)
-		{
-			AttackList.push_back(Attack(name, description, attack));
-		}
-		else 
-		{
-			std::cout << "Attack Limit reached!" << std::endl;
-		}
-	}
-
-	void showPlayerAttacks() 
-	{
-		for (Attack& attack : AttackList) {
-			std::cout << attack << '\n';
-		}
-	}
-
 };
 
 //Override the Operator "<<" to be able to print out the player object
 inline
 std::ostream& operator<< (std::ostream& obj,Player& player) 
 {
-	return obj << "Name: " << player.getName() <<
-				"\nHP: " << player.getHp() <<
-				"\nDefense: " << player.getDefenseInfo() << '\n';
+	return obj << "\nName: " << player.getName() <<
+		"\nHP: " << player.getHp() <<
+		"\nDefense: " << player.getDefenseInfo();
 }

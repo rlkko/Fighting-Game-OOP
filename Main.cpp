@@ -11,10 +11,10 @@ int main()
 	srand(static_cast<uint32_t>(time(nullptr)));
 
 	//You can add up to two players
-	game.setPlayer("John", 100, 20);
+	game.setPlayer("John God", 100, 20);
 	game.setPlayerAttack(0,"Powerful Punch", "This punch has been blessed by god!", 50);
 
-	game.setPresetPlayer(Default);
+	game.setPresetPlayer(1);
 
 	CombatSystem::Start();
 	

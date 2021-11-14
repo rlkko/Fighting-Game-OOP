@@ -2,76 +2,74 @@
 #include "CombatSystem.h"
 
 PlayerSystem game;
-
-//All the logs to be displayed to the user
-void CombatSystem::HitLog(Player& fighter, Player& victim, uint32_t randAttack) {
-	std::cout << fighter.getName() << " hits " << victim.getName() << " for " << randAttack << " - HP: " << (victim.getHp() - randAttack) << "\n";
-}
-
-void CombatSystem::DefendLog(Player& fighter, Player& victim, uint32_t randAttack) {
-	std::cout << victim.getName() << " Defended " << fighter.getName() << "'s attack for " << randAttack << " - HP: " << victim.getHp() << "\n";
-}
+std::vector<std::pair<uint16_t, Player>>fightersVec;
 
 void CombatSystem::Start() {
-	
 
 	for(Player& player:game.getPlayerVector()){
 		if (player.getAttacks().empty())
 		{
+			//TO DO: this doesnt work
 			//Attack one is the default Attack
 			player.AddPresetAttack(Default);
 		}
 	}
 	game.showPlayerData();
+
+	//First the player number, then the Player
+	fightersVec.emplace_back(1,game.setPreferedFighter());
+	fightersVec.emplace_back(2,game.setRandEnemy(fightersVec.at(0).second));
+
+	CombatSystem::StartCombat();
 }
 
-bool CombatSystem::CheckWinner() {
-	//check each player by reference
-	for (Player& player : game.getPlayerVector()) {
-		//std::cout << "// DEBUG: " << eachPlayer.getName() << " is dead? " << eachPlayer.isDead() << "\n";
-		//check if the player is dead with the "isDead()" function in the Player Class
-		if (player.isDead()) {
-			std::cout << player.getName() << " is dead! " << "\n";
-			return true;
-		}
-	}
-	return false;
-}
+void CombatSystem::StartCombat() {
+	bool turn = true;
 
-void CombatSystem::Fight(uint32_t attackValue, uint32_t defenseValue, Player& fighter, Player& victim) {
-	//Check if the player defends or not the attack
-	if (defenseValue > attackValue) {
-		CombatSystem::DefendLog(victim, fighter, attackValue);
-	}
-	// Make it display " Missed " instead of appearing the ugly zero
-	else if (attackValue == 0) { std::cout << "Missed" << "\n"; }
-	else { // check if the player cant defend, otherwise he gets hit 
-		CombatSystem::HitLog(fighter, victim, attackValue);
-		victim.getHit(attackValue);
-	}
-}
-
-void CombatSystem::StartFight() {
-	bool turn = true ;
-
-	//CombatSystem::InitLog();
 	do {
 		turn = !turn;
 
-		//Create a turn changing system
-		if (turn) { // player 1's turn	
-
-			//TO DO: attack get dmg
-			//CombatSystem::Fight(player1.).getRandAttack(), player2.getRandDefense(), player1, player2);
-
+		if (turn)
+		{ // player 1's turn
+			CombatSystem::CheckHit(fightersVec.at(0).second, fightersVec.at(1).second);
 		}
-		else { // player 2's turn
-
-			//TO DO: attack get dmg
-			//CombatSystem::Fight(player2.getRandAttack(), player1.getRandDefense(), player2, player1);
-
+		else
+		{ // player 2's turn
+			CombatSystem::CheckHit(fightersVec.at(1).second, fightersVec.at(0).second);
 		}
 		Sleep(500);
 
 	} while (!CombatSystem::CheckWinner()); // if false - repeat , if true returns
+}
+
+void CombatSystem::CheckHit(Player& fighter, Player& victim) {
+	Attack nextAttack = fighter.getNextAttack();
+	uint32_t attackValue = nextAttack.getRandDamage();
+	uint32_t defenseValue = victim.getRandDefense();
+
+	// Make it display " Missed " instead of appearing the ugly zero
+	if (attackValue == 0) { std::cout << fighter.getName() << " Missed!" << "\n"; return; }
+
+	if (attackValue > defenseValue) 
+	{//next attack operator>> overloaded
+		victim.getHit(attackValue);
+		std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n";
+	}
+	else 
+	{//next attack operator>> overloaded
+		std::cout << victim.getName() << " Defendeds " << fighter.getName() << " 's " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n";
+	}
+}
+
+bool CombatSystem::CheckWinner() 
+{
+	//check each player by reference
+	for (auto& fighter: fightersVec ) {
+		
+		if(fighter.second.isDead()){
+			std::cout << fighter.second.getName() << " is dead! " << "\n";
+			return true;
+		}
+	}
+	return false;
 }

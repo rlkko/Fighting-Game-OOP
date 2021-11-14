@@ -1,6 +1,35 @@
 #include "stdafx.h"
 #include "PlayerSystem.h"
 
+Player PlayerSystem::setPreferedFighter() {
+	uint16_t chosenFighter;
+
+	std::cout << "\nChoose your main char: \n";
+
+	for(uint32_t i=0; i < playerVector.size();i++) {
+		std::cout << i << " - " << playerVector.at(i).getName() << "\n";
+	}
+	
+	do{
+	std::cin >> chosenFighter;
+	} while (chosenFighter > playerVector.size());
+
+	putchar('\n');
+	return playerVector[chosenFighter];
+}
+
+Player PlayerSystem::setRandEnemy(Player preferredFighter) 
+{
+	Player& enemy = preferredFighter;
+
+	do 
+	{
+		enemy = playerVector.at(rand() % playerVector.size());
+	} while (preferredFighter.getName().compare(enemy.getName()) != 0);
+
+	return enemy;
+}
+
 void PlayerSystem::setPlayer(std::string name, int16_t hp, uint16_t defense)
 {
 	Player createdPlayer = Player(name, hp, defense);
@@ -46,4 +75,3 @@ void PlayerSystem::setPlayerAttack(uint16_t index, std::string name, std::string
 		std::cout << "Player Attack index error!\n";
 	}
 }
-

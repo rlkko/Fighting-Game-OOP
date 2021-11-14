@@ -36,6 +36,6 @@ public:
 //Operator overload so we can use it later
 inline
 std::ostream& operator<< (std::ostream& obj, Attack& attack) {
-	return	obj << attack.getName() << " - " << attack.getDmgInfo() << " DMG\n"
+	return	obj <<'\n' << attack.getName() << " - " << attack.getDmgInfo() << " DMG\n"
 			    <<"Description: " << attack.getDescription() << "\n";
 }
