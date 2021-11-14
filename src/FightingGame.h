@@ -7,4 +7,5 @@
 #include "CombatSystem.h"
 
 //I created this extern variable so i dont have to pass as reference
+//Located in the FightingGame.h
 extern PlayerSystem game;
