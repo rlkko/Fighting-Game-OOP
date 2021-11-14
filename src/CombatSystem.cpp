@@ -54,16 +54,18 @@ void CombatSystem::CheckHit(Player& fighter, Player& victim) {
 	uint32_t defenseValue = victim.getRandDefense();
 
 	// Make it display " Missed " instead of appearing the ugly zero
-	if (attackValue == 0) { std::cout << fighter.getName() << " Missed!" << "\n\n"; return; }
-
-	if (attackValue > defenseValue) 
-	{//next attack operator>> overloaded
-		victim.getHit(attackValue);
-		std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
-	}
+	if (!attackValue) { std::cout << fighter.getName() << " Missed!" << "\n\n"; return; }
 	else 
-	{//next attack operator>> overloaded
-		std::cout << victim.getName() << " Defendeds " << fighter.getName() << "'s " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
+	{
+		if (attackValue > defenseValue) 
+		{
+			victim.getHit(attackValue);
+			std::cout << fighter.getName() << " hits " << victim.getName() << " with " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
+		}
+		else 
+		{
+			std::cout << victim.getName() << " Defendeds " << fighter.getName() << "'s " << nextAttack.getName() << " for " << attackValue << " - HP: " << victim.getHp() << "\n\n";
+		}
 	}
 }
 
