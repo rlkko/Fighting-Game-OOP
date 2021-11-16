@@ -10,15 +10,6 @@ std::map<uint16_t, Player>fighterList;
 
 void CombatSystem::Start() {
 
-	//If the attack list is empty, add a preset attack
-	for(Player& player:game.getPlayerVector()){
-		if (player.getAttacks().empty())
-		{
-			//Attack one is the default Attack
-			player.AddPresetAttack(Default);
-		}
-	}
-
 	game.showPlayerData();
 
 	//Creating a pair to attribute an id to a player
