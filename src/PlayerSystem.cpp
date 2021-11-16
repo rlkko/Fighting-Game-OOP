@@ -7,7 +7,7 @@ Player PlayerSystem::setPreferedFighter() {
 	std::cout << "\nChoose your main char: \n";
 
 	for(uint32_t i=0; i < playerVector.size();i++) {
-		std::cout << i << " - " << playerVector.at(i).getName() << "\n";
+		std::cout << i+1 << " - " << playerVector.at(i).getName() << "\n";
 	}
 	
 	do{
