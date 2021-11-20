@@ -38,20 +38,19 @@ public:
 			Player DefaultPlayer(this->name = "Default", this->hp = 100, this->defense = 30);
 			AttackList.push_back(Attack(1));
 			break;
-		}//doing a default case would break the initialization
+		}
 	}
 
 	short getHit(uint16_t Enemydmg) { return this->hp -= Enemydmg; }
 	constexpr bool isDead() const { return (this->hp <= 0 ? true : false); } // condition ? result_if_true : result_if_false
 
+	void AddAttackTemplate(uint16_t attackPresetNum, std::string name, std::string description, uint16_t attack);
 	void AddPresetAttack(uint16_t presetNumber);
-
-	Attack getNextAttack();
 	void AddAttack(std::string name, std::string description, uint16_t attack);
 
+	Attack getNextAttack();
+	
 	void showPlayerAttacks();
-
-
 
 	//Creating getters for the attributes so we can use them
 	std::string getName() const { return this->name; }

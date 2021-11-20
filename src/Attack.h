@@ -16,7 +16,7 @@ public:
 	Attack(std::string name, std::string description, uint32_t dmg) : Name(name), Description(description), Dmg(dmg) {}
 
 	//Attack Presets - feel free to add
-	Attack(uint32_t number) {
+	Attack(uint16_t number) {
 		switch (number)
 		{
 		case 1:

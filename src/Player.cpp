@@ -2,22 +2,23 @@
 #include "Player.h"
 
 void Player::AddPresetAttack(uint16_t presetNumber) {
-
-	if (AttackList.size() < MAX_ATTACKS)
-	{
-		AttackList.push_back(Attack(presetNumber));
-	}
-	else
-	{
-		std::cout << "Attack Limit reached!" << std::endl;
-	}
+	AddAttackTemplate(presetNumber,"", "", 0);
 }
 
 void Player::AddAttack(std::string name, std::string description, uint16_t attack) {
+	AddAttackTemplate(NULL, name, description, attack);
+}
+
+void Player::AddAttackTemplate(uint16_t attackPresetNum, std::string name, std::string description, uint16_t attack) {
+	Attack chosenAttack = Attack(attackPresetNum);
 
 	if (AttackList.size() < MAX_ATTACKS)
 	{
-		AttackList.push_back(Attack(name, description, attack));
+		if (!name.empty() && attack != 0) {
+			chosenAttack = Attack(name, description, attack);
+		}
+
+		AttackList.push_back(chosenAttack);
 	}
 	else
 	{
@@ -39,9 +40,8 @@ Attack Player::getNextAttack() {
 	{
 		//Attack one is the default Attack
 		std::cout << "Attacks of " << this->getName() << "Not found, want to use the default one ? (y / n)\n";
-		
+
 			std::string name;
-			int32_t dmg;
 
 			std::cin >> choice;
 

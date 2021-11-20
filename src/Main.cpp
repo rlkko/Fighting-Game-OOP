@@ -12,7 +12,7 @@ int main()
 
 	//You can add up to two players
 	game.setPlayer("John God", 100, 20);
-	game.setPlayerAttack(0,"Powerful Punch", "This punch has been blessed by god!", 50);
+	game.setPlayerAttack(1,"Powerful Punch", "This punch has been blessed by god!", 50);
 
 	game.setPresetPlayer(1);
 
