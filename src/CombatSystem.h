@@ -11,6 +11,9 @@ namespace CombatSystem {
 	void Start();
 	void StartCombat();
 
-	void CheckHit(Player& fighter, Player& victim);
+	void PlayerOneTurn();
+	void PlayerTwoTurn();
+	inline void CheckHitTemplate(Player& fighter, Player& victim);
+
 	bool CheckWinner();
 }

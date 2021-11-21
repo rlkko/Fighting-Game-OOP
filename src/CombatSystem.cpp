@@ -39,15 +39,8 @@ void CombatSystem::StartCombat() {
 	
 }
 
-void CombatSystem::PlayerOneTurn() {
-	CheckHitTemplate(fighterList.at(1), fighterList.at(2));
-}
 
-void CombatSystem::PlayerTwoTurn() {
-	CheckHitTemplate(fighterList.at(2), fighterList.at(1));
-}
-
-inline void CheckHitTemplate(Player& fighter, Player& victim) {
+inline void CombatSystem::CheckHitTemplate(Player& fighter, Player& victim) {
 	const Attack& nextAttack = fighter.getNextAttack();
 	const uint32_t& attackValue = nextAttack.getRandDamage();
 	const uint32_t& defenseValue = victim.getRandDefense();
@@ -67,6 +60,15 @@ inline void CheckHitTemplate(Player& fighter, Player& victim) {
 		}
 	}
 }
+
+void CombatSystem::PlayerOneTurn() {
+	CheckHitTemplate(fighterList.at(1), fighterList.at(2));
+}
+
+void CombatSystem::PlayerTwoTurn() {
+	CheckHitTemplate(fighterList.at(2), fighterList.at(1));
+}
+
 
 bool CombatSystem::CheckWinner() 
 {
