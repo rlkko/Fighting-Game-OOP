@@ -27,11 +27,11 @@ void CombatSystem::StartCombat() {
 
 		if (turn)
 		{ // player 1's turn
-			CombatSystem::CheckHit(fighterList.at(1), fighterList.at(2));
+			CombatSystem::PlayerOneTurn();
 		}
 		else
 		{ // player 2's turn
-			CombatSystem::CheckHit(fighterList.at(2), fighterList.at(1));
+			CombatSystem::PlayerTwoTurn();
 		}
 		Sleep(500);
 
@@ -39,7 +39,15 @@ void CombatSystem::StartCombat() {
 	
 }
 
-void CombatSystem::CheckHit(Player& fighter, Player& victim) {
+void CombatSystem::PlayerOneTurn() {
+	CheckHitTemplate(fighterList.at(1), fighterList.at(2));
+}
+
+void CombatSystem::PlayerTwoTurn() {
+	CheckHitTemplate(fighterList.at(2), fighterList.at(1));
+}
+
+inline void CheckHitTemplate(Player& fighter, Player& victim) {
 	const Attack& nextAttack = fighter.getNextAttack();
 	const uint32_t& attackValue = nextAttack.getRandDamage();
 	const uint32_t& defenseValue = victim.getRandDefense();
