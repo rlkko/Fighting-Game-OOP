@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Player.h"
+#include "FightingGame.h"
 
 void Player::AddPresetAttack(uint16_t presetNumber) {
 	AddAttackTemplate(presetNumber,"", "", 0);
@@ -9,7 +9,9 @@ void Player::AddAttack(std::string name, std::string description, uint16_t attac
 	AddAttackTemplate(NULL, name, description, attack);
 }
 
-inline void Player::AddAttackTemplate(uint16_t attackPresetNum, std::string name, std::string description, uint16_t attack) {
+inline void Player::AddAttackTemplate(const uint16_t attackPresetNum,const std::string name,const std::string description,const uint16_t attack) {
+	const int MAX_ATTACKS = 4;
+	
 	Attack chosenAttack = Attack(attackPresetNum);
 
 	if (AttackList.size() < MAX_ATTACKS)
@@ -36,10 +38,12 @@ void Player::showPlayerAttacks()
 Attack Player::getNextAttack() {
 	char choice;
 
+	std::map<uint16_t, Player> playerMap = game.getPlayerMap();
+
 	if (this->AttackList.empty())
 	{
-		//Attack one is the default Attack
-		std::cout << "Attacks of " << this->getName() << " not found, want to use the default one ? (y / n)\n";
+		if(playerMap.size() > 2)
+			std::cout << "Attacks of " << this->getName() << " not found, want to use the default one ? (y / n)\n";
 
 			std::string name;
 
@@ -47,18 +51,14 @@ Attack Player::getNextAttack() {
 
 			if(choice == 'y')
 			{
-				this->AddPresetAttack(Default);
+				this->AddPresetAttack(1);
 			}
 			else if (choice == 'n')
 			{
-				system("cls");
-				std::cout << "Add one using the method game.AddAttack()\n";
-				exit(0);
+				return NULL;
 			}
-
 	}
-
-	uint32_t randAttackIndex = rand() %  this->getAttacks().size();
+	uint32_t randAttackIndex = rand() % this->getAttacks().size();
 	Attack SelectedAttack = this->getAttacks().at(randAttackIndex);
 
 	return SelectedAttack;

@@ -24,39 +24,33 @@ Player PlayerSystem::setPreferedFighter() {
 }
 
 Player PlayerSystem::setRandEnemy()
-{	
-	auto it = playerMap.begin();
-	// creates a random value in map and stores in the iterator it
-	std::advance(it, rand() % playerMap.size());
-	
-		if (it->first != preferedPlayerId && playerMap.size() > 2)
-		{
-			// checks if id has the same id as the user's player
-			while(it->first == preferedPlayerId)
-				std::advance(it, rand() % playerMap.size());
-			
-			return playerMap.at(it->first);
-		}
-		else if(playerMap.size() == 2) 
-		{
-			uint16_t chosenPlayer = preferedPlayerId == 1 ? 2 : 1;
-			return playerMap.at(chosenPlayer);
-		}
+{
+	if (playerMap.size() < 2)
+		return NULL;
 
-	std::cout << "No other Player Found, Default Player Created\n";
-	return Player(Default);
+	if (playerMap.size() == 2)
+	{
+		uint16_t chosenPlayer = preferedPlayerId == 1 ? 2 : 1;
+		return playerMap.at(chosenPlayer);
+	}
+	auto it = playerMap.begin();
+	
+	// creates a random value in map and stores in the iterator it
+	while(it->first == preferedPlayerId)
+		std::advance(it, rand() % playerMap.size());	
+	return playerMap.at(it->first);
 }
 
-void PlayerSystem::setPlayer(std::string name, int16_t hp, uint16_t defense)
+void PlayerSystem::setPlayer(const std::string name,const int16_t hp,const uint16_t defense)
 {
 	setPlayerTemplate(NULL, name, hp, defense);
 }
 
-void PlayerSystem::setPresetPlayer(uint16_t DefaultPresetNumber) {
+void PlayerSystem::setPresetPlayer(const uint16_t DefaultPresetNumber) {
 	setPlayerTemplate(DefaultPresetNumber);
 }
 
-inline void PlayerSystem::setPlayerTemplate(uint16_t DefaultPresetNumber, std::string name, int16_t hp, uint16_t defense)
+inline void PlayerSystem::setPlayerTemplate(const uint16_t DefaultPresetNumber,const std::string name,const int16_t hp,const uint16_t defense)
 {
 	Player createdPlayer = Player(DefaultPresetNumber);
 
@@ -85,8 +79,7 @@ void PlayerSystem::showPlayerData()
 	}
 }
 
-
-void PlayerSystem::setPlayerAttack(uint16_t index, std::string name, std::string description, uint32_t dmg) 
+void PlayerSystem::setPlayerAttack(const uint16_t index,const std::string name,const std::string description,const uint32_t dmg) 
 {
 		if (playerMap.find(index) != playerMap.end())
 			playerMap.at(index).AddAttack(name, description, dmg);

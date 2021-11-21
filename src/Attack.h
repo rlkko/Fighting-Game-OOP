@@ -7,6 +7,7 @@
 
 class Attack
 {
+
 private:
 	std::string Name = "";
 	std::string Description = "";

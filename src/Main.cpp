@@ -14,6 +14,7 @@ int main()
 	game.setPlayer("John God", 100, 20);
 	game.setPlayerAttack(1,"Powerful Punch", "This punch has been blessed by god!", 50);
 
+	//presetList can be found in the Player header
 	game.setPresetPlayer(1);
 
 	CombatSystem::Start();
