@@ -14,7 +14,7 @@ void CombatSystem::Start() {
 
 	//Creating a pair to attribute an id to a player
 	fighterList.insert(std::make_pair(1, game.setPreferedFighter()));
-	fighterList.insert(std::make_pair(2, game.setRandEnemy(fighterList.at(1))));
+	fighterList.insert(std::make_pair(2, game.setRandEnemy()));
 	
 	CombatSystem::StartCombat();
 }

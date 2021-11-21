@@ -4,7 +4,7 @@
 Player PlayerSystem::setPreferedFighter() {
 	uint16_t chosenFighter;	
 
-	for (auto& player : playerVector) {
+	for (auto& player : playerMap) {
 		//Player.first being the ID, Player.second being the actual player
 		 std::cout << player.first << " - " << player.second.getName() << '\n';
 	}
@@ -15,23 +15,33 @@ Player PlayerSystem::setPreferedFighter() {
 	do{
 		std::cin >> chosenFighter;
 
-		if (chosenFighter == 0) exit(0);
+		if (chosenFighter == 0) exit(NULL);
 
-	} while (playerVector.find(chosenFighter) == playerVector.end());
+	} while (playerMap.find(chosenFighter) == playerMap.end());
 
-	return playerVector.at(chosenFighter);
+	preferedPlayerId = chosenFighter;
+	return playerMap.at(chosenFighter);
 }
 
-Player PlayerSystem::setRandEnemy(Player& preferredFighter )
+Player PlayerSystem::setRandEnemy()
 {	
-	for (auto& player : playerVector)
-	{
-		if (player.second.getName().compare(preferredFighter.getName()))
+	auto it = playerMap.begin();
+	// creates a random value in map and stores in the iterator it
+	std::advance(it, rand() % playerMap.size());
+	
+		if (it->first != preferedPlayerId && playerMap.size() > 2)
 		{
-			//player.second is the pair second variable / the player class
-			 return player.second;
+			// checks if id has the same id as the user's player
+			while(it->first == preferedPlayerId)
+				std::advance(it, rand() % playerMap.size());
+			
+			return playerMap.at(it->first);
 		}
-	}
+		else if(playerMap.size() == 2) 
+		{
+			uint16_t chosenPlayer = preferedPlayerId == 1 ? 2 : 1;
+			return playerMap.at(chosenPlayer);
+		}
 
 	std::cout << "No other Player Found, Default Player Created\n";
 	return Player(Default);
@@ -56,7 +66,7 @@ inline void PlayerSystem::setPlayerTemplate(uint16_t DefaultPresetNumber, std::s
 			createdPlayer = Player(name, hp, defense);
 		}
 
-		playerVector.insert(std::make_pair(playercounter, createdPlayer));
+		playerMap.insert(std::make_pair(playercounter, createdPlayer));
 	}
 	else
 	{
@@ -69,18 +79,16 @@ inline void PlayerSystem::setPlayerTemplate(uint16_t DefaultPresetNumber, std::s
 void PlayerSystem::showPlayerData()
 {
 	//print the player data with the overrided operator "<<" for each player
-	for (auto& eachPlayer : playerVector) {
+	for (auto& eachPlayer : playerMap) {
 		std::cout << eachPlayer.second << "\n";
 		eachPlayer.second.showPlayerAttacks();
 	}
 }
 
+
 void PlayerSystem::setPlayerAttack(uint16_t index, std::string name, std::string description, uint32_t dmg) 
 {
-	//You've got 5
-	for(auto& player : playerVector)
-	{
-		if (player.first == index) player.second.AddAttack(name,description,dmg);
-		else std::cout << "Player Attack index error!\n";
-	}
+		if (playerMap.find(index) != playerMap.end())
+			playerMap.at(index).AddAttack(name, description, dmg);
+		else std::cout << "Player Attack index used " << index <<" results in a error!\n";
 }

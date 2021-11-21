@@ -9,12 +9,12 @@ void Player::AddAttack(std::string name, std::string description, uint16_t attac
 	AddAttackTemplate(NULL, name, description, attack);
 }
 
-void Player::AddAttackTemplate(uint16_t attackPresetNum, std::string name, std::string description, uint16_t attack) {
+inline void Player::AddAttackTemplate(uint16_t attackPresetNum, std::string name, std::string description, uint16_t attack) {
 	Attack chosenAttack = Attack(attackPresetNum);
 
 	if (AttackList.size() < MAX_ATTACKS)
 	{
-		if (!name.empty() && attack != 0) {
+		if (!name.empty()) {
 			chosenAttack = Attack(name, description, attack);
 		}
 
@@ -39,7 +39,7 @@ Attack Player::getNextAttack() {
 	if (this->AttackList.empty())
 	{
 		//Attack one is the default Attack
-		std::cout << "Attacks of " << this->getName() << "Not found, want to use the default one ? (y / n)\n";
+		std::cout << "Attacks of " << this->getName() << " not found, want to use the default one ? (y / n)\n";
 
 			std::string name;
 
