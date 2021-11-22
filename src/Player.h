@@ -18,7 +18,8 @@ private:
 
 public:
 	// Feel free to add
-	enum PlayerPresetList {
+	enum PlayerPresetList : uint16_t
+	{
 		Default = 1
 	};
 
@@ -27,9 +28,10 @@ public:
 	//Constructor
 	Player(const std::string theName, int16_t theHp, uint16_t theDefense) :name(theName), hp(theHp), defense(theDefense) {}
 
-	//PlayerModels
+	//PlayerPresets
 	Player(const uint32_t presetNumber) 
 	{
+	
 		const uint16_t playerPresetLimit = 1;
 
 		if (presetNumber > playerPresetLimit) {
@@ -58,11 +60,11 @@ public:
 	void showPlayerAttacks();
 
 	//Creating getters for the attributes so we can use them
-	std::string getName() const { return this->name; }
+	virtual std::string getName() const { return this->name; }
 	constexpr short getHp() const { return this->hp; }
 	constexpr short getDefenseInfo() const { return this->defense; }
 	constexpr float getLuck() const { return this->luck; }
-	std::vector<Attack> getAttacks() const { return this->AttackList; }
+	virtual std::vector<Attack> getAttacks() const { return this->AttackList; }
 
 };
 

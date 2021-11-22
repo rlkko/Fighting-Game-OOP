@@ -51,7 +51,7 @@ Attack Player::getNextAttack() {
 
 			if(choice == 'y')
 			{
-				this->AddPresetAttack(1);
+				this->AddPresetAttack(Default);
 			}
 			else if (choice == 'n')
 			{

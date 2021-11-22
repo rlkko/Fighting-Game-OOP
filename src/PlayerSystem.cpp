@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PlayerSystem.h"
+#include "Player.h"
 
 Player PlayerSystem::setPreferedFighter() {
 	uint16_t chosenFighter;	
@@ -47,6 +48,7 @@ void PlayerSystem::setPlayer(const std::string name,const int16_t hp,const uint1
 }
 
 void PlayerSystem::setPresetPlayer(const uint16_t DefaultPresetNumber) {
+
 	setPlayerTemplate(DefaultPresetNumber);
 }
 
