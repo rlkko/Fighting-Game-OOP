@@ -1,5 +1,7 @@
 # Basic-Fighting-game
 
+UPDATE 2023: this project doesnt reflect any of my questionable design decisions, please ignore
+
 My first OOP project made in 2020
 
 Its a Basic library where i applied all the concepts of Object-Oriented Programming and its being updated Annually as a roadmap of my progress learning c++ and programming.
